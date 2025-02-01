@@ -77,16 +77,13 @@ export const authOptions ={
     ],
     secret:process.env.NEXTAUTH_SECRET || "secret",
     callback:{
-        async session({token , session}:any){
-            session.user=token
+        async session({session,user}:any){
+            session.user.id=user.id
             return session
         },
         async jwt({token, user}:any){
             if(user){
                 token.id=user.id
-                token.name=user.name
-                token.email=user.email
-                token.phone=user.number
             }
             return token
         }

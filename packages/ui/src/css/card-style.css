@@ -1,0 +1,15 @@
+.card-container {
+    border: 1px solid #e5e7eb; /* Light gray border */
+    padding: 1rem; /* Padding around the content */
+  }
+  
+  .card-title {
+    font-size: 1.25rem; /* Equivalent to `text-xl` */
+    border-bottom: 1px solid #e5e7eb; /* Bottom border */
+    padding-bottom: 0.5rem; /* Padding below the title */
+  }
+  
+  .card-content {
+    margin-top: 0.5rem; /* Optional: Add spacing if needed */
+  }
+  

@@ -1,0 +1,12 @@
+.center-container {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    height: 100%; /* Full height */
+  }
+  
+  .center-content {
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center content horizontally */
+  }
+  

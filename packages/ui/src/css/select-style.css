@@ -1,0 +1,16 @@
+.select-dropdown {
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    color: #111827;
+    font-size: 0.875rem; /* text-sm */
+    border-radius: 0.5rem; /* rounded-lg */
+    width: 100%;
+    padding: 0.625rem; /* p-2.5 */
+  }
+  
+  .select-dropdown:focus {
+    border-color: #3b82f6; /* focus:border-blue-500 */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 */
+  }
+  

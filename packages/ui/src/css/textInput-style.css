@@ -1,0 +1,29 @@
+.text-input-container {
+    padding-top: 0.5rem; /* Equivalent to `pt-2` */
+  }
+  
+  .text-input-label {
+    display: block; /* Makes the label take full width */
+    margin-bottom: 0.5rem; /* Equivalent to `mb-2` */
+    font-size: 0.875rem; /* Equivalent to `text-sm` */
+    font-weight: 500; /* Equivalent to `font-medium` */
+    color: #111827; /* Equivalent to `text-gray-900` */
+  }
+  
+  .text-input {
+    background-color: #f9fafb; /* Equivalent to `bg-gray-50` */
+    border: 1px solid #d1d5db; /* Equivalent to `border border-gray-300` */
+    color: #111827; /* Equivalent to `text-gray-900` */
+    font-size: 0.875rem; /* Equivalent to `text-sm` */
+    border-radius: 0.5rem; /* Equivalent to `rounded-lg` */
+    width: 100%; /* Equivalent to `w-full` */
+    padding: 0.625rem; /* Equivalent to `p-2.5` */
+    outline: none; /* Removes default browser outline */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+  
+  .text-input:focus {
+    border-color: #3b82f6; /* Equivalent to `focus:border-blue-500` */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* Equivalent to `focus:ring-blue-500` */
+  }
+  
