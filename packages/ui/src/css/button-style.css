@@ -1,0 +1,21 @@
+.custom-button {
+    color: #ffffff; /* text-white */
+    background-color: #1f2937; /* bg-gray-800 */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-weight: 500; /* font-medium */
+    font-size: 0.875rem; /* text-sm */
+    padding: 0.625rem 1.25rem; /* px-5 py-2.5 */
+    margin-right: 0.5rem; /* me-2 */
+    margin-bottom: 0.5rem; /* mb-2 */
+    outline: none; /* focus:outline-none */
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+  }
+  
+  .custom-button:hover {
+    background-color: #111827; /* hover:bg-gray-900 */
+  }
+  
+  .custom-button:focus {
+    box-shadow: 0 0 0 4px rgba(156, 163, 175, 0.5); /* focus:ring-4 focus:ring-gray-300 */
+  }
+  

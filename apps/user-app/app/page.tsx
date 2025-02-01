@@ -1,16 +1,13 @@
 "use client"
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import {Appbar} from "@repo/ui/appbar"
+
 
 export default function Home() {
+  const session = useSession()
   return (
     <>
-    <button onClick={()=>{
-      signIn()
-    }} className=" underline text-amber-800 mr-10">signin</button>
-    <button onClick={()=>{
-      signOut()
-    }} className=" underline text-blue-900  mr-10">signout</button>
-  
+    <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user}/>
     </>
   );
 }

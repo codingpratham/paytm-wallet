@@ -1,0 +1,22 @@
+.container {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between items */
+    border-bottom: 1px solid #e5e7eb; /* Light border at the bottom */
+    padding: 0 1rem; /* Horizontal padding */
+  }
+  
+  .text-section {
+    font-size: 1.125rem; /* Text size equivalent to `text-lg` */
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+  }
+  
+  .button-section {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    padding-top: 0.5rem; /* Top padding */
+  }
+  
+  
