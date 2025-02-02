@@ -1,88 +1,60 @@
+"use server"
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
-import { prisma } from "@repo/db/client";
+import {prisma} from "@repo/db/client";
 
 export async function p2pTransfer(to: string, amount: number) {
-  try {
     const session = await getServerSession(authOptions);
     const from = session?.user?.id;
-
-    // Check if the session or fromUser exists
     if (!from) {
-      return {
-        message: "Error: User is not authenticated.",
-      };
+        return {
+            message: "Error while sending"
+        }
     }
-
-    console.log("fromUser:", from);
-
-    // Find the recipient user by phone number
     const toUser = await prisma.user.findFirst({
-      where: {
-        number: to,
-      },
+        where: {
+            number: to
+        }
     });
 
-    // Check if the recipient user exists
     if (!toUser) {
-      return {
-        message: "Error: Recipient user not found.",
-      };
+        return {
+            message: "User not found"
+        }
     }
-
-    console.log("toUser:", toUser.id);
-
-    // Start a transaction to process the balance transfer
     await prisma.$transaction(async (tx) => {
-      // Get the sender's balance
-      const fromBalance = await tx.balance.findUnique({
-        where: { userId: Number(from) },
-      });
+        await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(from)} FOR UPDATE`;
 
-      // Check if the sender has enough balance
-      if (!fromBalance) {
-        throw new Error("Sender's balance not found.");
-      }
+        const fromBalance = await tx.balance.findUnique({
+            where: { userId: Number(from) },
+          });
+          if (!fromBalance || fromBalance.amount < amount) {
+            throw new Error('Insufficient funds');
+          }
 
-      if (fromBalance.amount < amount) {
-        throw new Error("Insufficient funds.");
-      }
+          await tx.balance.updateMany({
+            where: { userId: Number(from) },
+            data: { amount: { decrement: amount } },
+          });
 
-      console.log("fromBalance:", fromBalance);
+          await tx.balance.updateMany({
+            where: { userId: toUser.id },
+            data: { amount: { increment: amount } },
+          });
 
-      // Decrement the sender's balance
-      await tx.balance.update({
-        where: { userId: Number(from) },
-        data: { amount: { decrement: amount } },
-      });
-
-      // Increment the recipient's balance
-      await tx.balance.update({
-        where: { userId: toUser.id },
-        data: { amount: { increment: amount } },
-      });
-
-      // Record the P2P transfer in the database
-      await tx.p2pTransfer.create({
-        data: {
-          fromUserId: Number(from),
-          toUserId: toUser.id,
-          amount,
-          timestamp: new Date(),
-        },
-      });
+          await tx.p2pTransfer.create({
+            data: {
+                fromUserId: Number(from),
+                toUserId: toUser.id,
+                amount,
+                timestamp: new Date()
+            }
+          })
+          return {
+            message: "Transfer successful",
+            showAlert:()=>{
+              alert("Transfer successful");
+            }
+          }
     });
-
-    // Return success message after transaction
-    return {
-      message: "Transfer successful.",
-    };
-  } catch (error) {
-    console.error("Error during P2P transfer:", error);
-
-    // Return error message
-    return {
-      message: error instanceof Error ? error.message : "Unknown error occurred.",
-    };
-  }
 }

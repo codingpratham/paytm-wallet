@@ -41,7 +41,9 @@ export async function createOnRampTransaction(provider: string, amount: number) 
     })
 
     return {
-        message: "Transaction created successfully",
-        token: token
-    }
+        message: "Transfer successful",
+        showAlert:()=>{
+          alert("Transfer successful");
+        }
+      }
 }
