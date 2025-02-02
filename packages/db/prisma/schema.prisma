@@ -54,9 +54,10 @@ model p2pTransfer{
   timestamp DateTime
   fromUserId Int
   toUserId Int
+  
+  toUser User @relation(name: "ToUserRelation",fields:[toUserId],references: [id])
 
   fromUser User @relation(name: "FromUserRelation",fields:[fromUserId],references: [id])
-  toUser User @relation(name: "ToUserRelation",fields:[toUserId],references: [id])
 }
 
 enum AuthType {
