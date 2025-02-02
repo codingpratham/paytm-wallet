@@ -1,5 +1,6 @@
 import { type JSX } from "react";
-import "./css/card-style.css"
+import "./css/card-style.css";
+
 export function Card({
   title,
   children,
@@ -9,9 +10,8 @@ export function Card({
 }): JSX.Element {
   return (
     <div className="card-container">
-  <h1 className="card-title">{title}</h1>
-  <p className="card-content">{children}</p>
-</div>
-
+      <h1 className="card-title">{title}</h1>
+      <div className="card-content">{children}</div> {/* ✅ Changed <p> to <div> */}
+    </div>
   );
 }

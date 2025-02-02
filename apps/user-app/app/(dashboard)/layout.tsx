@@ -12,6 +12,7 @@ export default function Layout({
                 <SidebarItem href={"/dashboard"} title="Home" />
                 <SidebarItem href={"/transfer"} title="Transfer" />
                 <SidebarItem href={"/transactions"} title="Transactions" />
+                <SidebarItem title="P2P Transfer" href="/p2p"/>
             </div>
         </div>
             {children}

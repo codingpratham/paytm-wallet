@@ -46,7 +46,7 @@ export const authOptions ={
 
                     if(passwordValidation){
                         return {
-                            id:existingUser.id,
+                            id:existingUser.id.toString(),
                             name:existingUser.name,
                             email:existingUser.email,
                             phone:existingUser.number
@@ -71,19 +71,30 @@ export const authOptions ={
                     }
                 } catch (error) {
                     console.error(error)
+                    return null
                 }
             },
         })
     ],
     secret:process.env.NEXTAUTH_SECRET || "secret",
-    callback:{
-        async session({session,user}:any){
-            session.user.id=user.id
-            return session
+    callbacks:{
+        async session({session,token}:any){
+            if (token) {
+                session.user = {
+                    id: token.id, // Assign ID from token
+                    name: token.name,
+                    email: token.email,
+                    phone: token.phone,
+                };
+            }
+            return session;
         },
         async jwt({token, user}:any){
             if(user){
                 token.id=user.id
+                token.name = user.name;
+                token.email = user.email;
+                token.phone = user.phone;
             }
             return token
         }
