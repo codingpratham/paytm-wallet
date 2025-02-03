@@ -6,7 +6,7 @@ export const POST= async ()=>{
         data:{
             name:"jhon",
             email:"john@example.com",
-            number:2452452451,
+            number:"2452452451",
             password:"password",
         }
     })
