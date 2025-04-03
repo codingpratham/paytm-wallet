@@ -1,4 +1,4 @@
-/* eslint-disable react/display-name */
+ 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import { prisma } from "@repo/db/client";
